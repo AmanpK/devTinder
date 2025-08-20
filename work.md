@@ -55,3 +55,6 @@
 - Create custom validatoe function
 - Improve dataabse schema
 - Add timestamps to schema
+- Add level vadiation on Patch request and signup post api
+- Data Sanitiziation - Add API validation for each field
+- Install validator library and explore validator functions

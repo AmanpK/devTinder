@@ -21,7 +21,22 @@ app.patch("/user", async (req, res) => {
   const data = req.body;
   const userId = req.body.id;
   try {
-    await User.findByIdAndUpdate(userId, data, {returnDocument: "after", runValidators: true});
+    const ALLOWED_UPDATES = ["photoUrl", "about", "gender", "age", "skills"];
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k)
+    );
+    if (!isUpdateAllowed) {
+      throw new Error("Update not allowed");
+    }
+
+    if (data?.skills.length > 20) {
+      throw new Error("Skills cannot be more than 20");
+    }
+
+    await User.findByIdAndUpdate(userId, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
     res.send("Update Successfully");
   } catch (err) {
     res.status(400).send("Error saving in user:", err.message);
@@ -36,7 +51,7 @@ app.delete("/user", async (req, res) => {
   } catch (err) {
     res.status(400).send("Error saving in user:", err.message);
   }
-}); 
+});
 
 app.get("/feed", async (req, res) => {
   try {
