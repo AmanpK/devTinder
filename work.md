@@ -9,3 +9,49 @@
 - Difference between caret and tilda (^ vs ~)
 - What are dependencies in package.json
 - What is the use of "-g" while npm install package
+
+- Initialise the git ------- git init
+- Create .gitigonore
+- Commit to local ------ git add . and git commit -m "created an express server"
+- Create a remote repo on github 
+- Push all code to remote origin (copy all commands from github)
+- Why do push package.json and package_lock.json?
+- Explore the routing and use of ?, *, (), + in the routes
+- Use of regex in routes /a/, /.*fly$/
+- How to read the query params in the routes
+- How to read the dynamic routes
+
+- Multiple route handlers
+- next()
+- app.use('/user', [r1,r2], r3);
+- What is middleware
+- all vs use
+- Write a dummy auth middleware for admin
+- Write a dummy auth middleware for user routes except /user/login
+- Error handling using app.use("/user", (err, req, res, next)=> {})
+
+- Create a free cluster on MongoDB official website(Mongo Atlas)
+- Install mongoose library
+- Connect your application to databsae "Connection-url"/devTinder
+- Call the connectDB function and connect database before starting application on 7777
+- Create userSchems and user Model
+- Create POSt /signup API to add data to database
+- Push some documents using API calls from postman
+- Error handling using try catch
+
+- Difference between JS object and JSON object
+- Add the express.json middleware to your app
+- Make your signup API dynamic to receive data from end user
+- User.findOne with duplicate email Ids, which object will be returned
+- API - GET user by email and GET all the user
+- API - GET user by id
+- Create a delete user api
+- Create a update user api
+- Read mongoose documentations for Models
+- API - update the user with emailId
+
+- Explore schematype options from documentation
+- Add default, unique, required, lowercase, min, max
+- Create custom validatoe function
+- Improve dataabse schema
+- Add timestamps to schema
