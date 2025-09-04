@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,24 +20,20 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true, // to remove white space
-      validate(value){
-        if(!validator.isEmail(value))
-        {
+      validate(value) {
+        if (!validator.isEmail(value)) {
           throw new Error("Invalid email ID" + value);
-          
         }
       },
     },
     password: {
       type: String,
       required: true,
-      validate(value){
-        if(!validator.isStrongPassword(value))
-        {
+      validate(value) {
+        if (!validator.isStrongPassword(value)) {
           throw new Error("Enter a strong password : " + value);
-          
         }
-      }
+      },
     },
     age: {
       type: Number,
@@ -53,13 +51,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default:
         "https://www.nicepng.com/png/detail/52-521023_download-free-icon-female-vectors-blank-facebook-profile.png",
-        validate(value){
-          if(!validator.isURL(value))
-          {
-            throw new Error("Invalid photo url: " + value);
-            
-          }
-        },
+      validate(value) {
+        if (!validator.isURL(value)) {
+          throw new Error("Invalid photo url: " + value);
+        }
+      },
     },
     about: {
       type: String,
@@ -71,5 +67,24 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.methods.getJWT = async function () {
+  const user = this;
+
+  const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$790", {
+    expiresIn: "7d",
+  });
+
+  return token;
+};
+
+userSchema.methods.validatePassword = async function (passwordInputByUser) {
+  const user = this;
+  const passwordHash = user.password;
+
+  const token = await bcrypt.compare(passwordInputByUser, passwordHash);
+
+  return token;
+};
 
 module.exports = mongoose.model("User", userSchema);

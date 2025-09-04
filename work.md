@@ -13,11 +13,11 @@
 - Initialise the git ------- git init
 - Create .gitigonore
 - Commit to local ------ git add . and git commit -m "created an express server"
-- Create a remote repo on github 
+- Create a remote repo on github
 - Push all code to remote origin (copy all commands from github)
 - Why do push package.json and package_lock.json?
-- Explore the routing and use of ?, *, (), + in the routes
-- Use of regex in routes /a/, /.*fly$/
+- Explore the routing and use of ?, \*, (), + in the routes
+- Use of regex in routes /a/, /.\*fly$/
 - How to read the query params in the routes
 - How to read the dynamic routes
 
@@ -58,3 +58,25 @@
 - Add level vadiation on Patch request and signup post api
 - Data Sanitiziation - Add API validation for each field
 - Install validator library and explore validator functions
+
+- Validate data in SignUp api
+- Install bcrypt library
+- Create password using bcrypt.hash and save user data with encrypted password
+- Create login api
+- Compare password and throw errors if email or password is invalid (never write error message like "email or password is incorrect means do not let the attackers know, write "invalid credentails" or something same)
+
+- In login api, create jwt token and for that install cookie parser and jasonwebtoken
+- Read the cookie inside profile api and find the logged in user
+- Write userAuth middleware
+- Add the userAuth middleware in APIs
+- Set the expiry date for cookies and jwt for 7 days
+- Creaet user schema method to get jwt and validate password
+
+- Read documentation for express.Router
+- Create routes folder for managing auth, profile, request routers
+- Create authRouter, profileRouter, requestRouter
+- Import these routers in app.js
+- Create POST /logout api
+- Create PATCH /profile/edit api
+- Create PATCH /profile/password api
+- Make sure you validate POST/PATCH api data
