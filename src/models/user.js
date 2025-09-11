@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     emailId: {
       type: String,
       required: true,
-      unique: true,
+      unique: true, // if making unique is equal to true then do not need to specify index true and index is used to make query in less time.
       lowercase: true,
       trim: true, // to remove white space
       validate(value) {
@@ -41,11 +41,15 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      validate(value) {
-        if (!["male", "female", "others"].includes(vale)) {
-          throw new Error("Gender is not valid");
-        }
+      enum: {
+        values: ["male", "female", "others"],
+        message: `{VALUE} is not a valid gender type`
       },
+      // validate(value) {     //custom validator function but you can use enum also
+      //   if (!["male", "female", "others"].includes(vale)) {
+      //     throw new Error("Gender is not valid");
+      //   }
+      // },
     },
     photoUrl: {
       type: String,
@@ -67,6 +71,8 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// userSchema.index({firstName: 1}) example of index creation to run the query like findOne and other faster but we should not create unnessary indexes, it will become tough for DB 
 
 userSchema.methods.getJWT = async function () {
   const user = this;

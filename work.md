@@ -80,3 +80,24 @@
 - Create PATCH /profile/edit api
 - Create PATCH /profile/password api
 - Make sure you validate POST/PATCH api data
+
+- https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/ read this compound indexes topic for optimization also here 1 is for ascending and -1 is for descending.
+- Read more about indexes in MongDB.
+- Why do we need index in DB?
+- Advantages and disadvantages of creating index.
+
+- Create a connection request schema
+- Send conntection request api and proper validation of data
+- Read $or and $and query in mongoDB https://www.mongodb.com/docs/manual/reference/operator/query/or/
+- Schema.pre("save) function
+- Always think about corner cases.
+
+- Write code with proper validation for /request/review/:status/:requestId
+- Thought process POST vs GET
+- find returns array and findOne returns 1 object
+- Read about ref and populate to form relation between two collection
+- Create GET /user/requests/received
+- Create GET /user/connections
+
+- Logic for GET /feed api
+- Explore $nin, $and, @ne and other query operators
