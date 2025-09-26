@@ -2,7 +2,13 @@ const express = require("express");
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
 const app = express(); //create express application
+const cors = require("cors");
+require('dotenv').config()
 
+app.use(cors({
+  origin: "http://localhost:5173", // as not using https so to let know the backend about frontend url
+  credentials: true,     //as not use https
+}));
 app.use(express.json()); //middleware to process/parse data into json data
 app.use(cookieParser());
 
@@ -69,7 +75,7 @@ app.use("/", userRouter);
 connectDB()
   .then(() => {
     console.log("Database connection established....");
-    app.listen(7777, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server is listening on port 7777...");
     }); // to listen request on particular port
   })
